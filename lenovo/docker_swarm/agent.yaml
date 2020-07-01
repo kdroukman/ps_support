@@ -7,6 +7,11 @@ traceEndpointUrl: {"#from": "/etc/signalfx/trace_endpoint", optional: true}
 
 intervalSeconds: 10
 
+hostname: {"#from": "/etc/signalfx/hostname", optional: true}
+
+globalDimensions:
+  environment: {"#from": "/etc/signalfx/env", optional: true}
+
 etcPath: /hostfs/etc
 procPath: /hostfs/proc
 runPath: /hostfs/run
