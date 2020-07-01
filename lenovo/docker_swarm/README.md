@@ -1,10 +1,30 @@
-Configurations for Docker host
+<b>Config for Docker host</b>
 
+*Pre-requisites*:
+Clone the image to your local repository where required.
 
-We provide a Docker image at quay.io/signalfx/signalfx-agent. The image is tagged using the same agent version scheme.
+*Step 1*: 
+
+Create configuration directory on the host:
+<code>
+signalfx-agent.sh \
+    --action config \
+    --realm us1 \
+    --env <mandatory environment>\
+    --hostname <optional hostname> \
+    --monitors <comma separate list of additional monitors to add. e.g redis,apm> \
+    --config-path <web or fs location where .yaml files are located> \
+    <SIGNALFX_ACCESS_TOKEN>
+    </code>
+
+*Step 2*:
+Run the docker container with appropriate volume mappings. 
+
+We provide a Docker image at <a href=quay.io/signalfx/signalfx-agent>quay.io/signalfx/signalfx-agent</a>. The image is tagged using the same agent version scheme.
 
 If you are using Docker outside of Kubernetes, you can run the agent in a Docker container and still gather metrics on the underlying host by running it with the following flags:
 
+<code>
 $ docker run \
     --name signalfx-agent \
     --pid host \
@@ -14,4 +34,5 @@ $ docker run \
     -v /etc/signalfx/:/etc/signalfx/:ro \
     -v /etc/passwd:/etc/passwd:ro \
     quay.io/signalfx/signalfx-agent:<version>
+    </code>
 This assumes you have the agent config in the conventional directory (/etc/signalfx) on the root mount namespace. 
