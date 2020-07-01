@@ -25,6 +25,7 @@ parse_args_and_install() {
   local config_path=
   local monitors=
   local action="install"
+  local trace_url=
  
   while [ -n "${1-}" ]; do
     case $1 in
@@ -77,6 +78,10 @@ parse_args_and_install() {
         action="$2"
         shift 1
         ;;	
+      --trace-endpoint)
+        trace_url="$2"
+        shift 1
+        ;;  
       -h|--help)
         usage
         exit 0
@@ -116,11 +121,11 @@ parse_args_and_install() {
 
   if [ $action = "install" ]; then
      install "$stage" "$package_version"
-     configure "$config_path" "$monitors" "$realm" "$access_token" "$insecure" "$cluster" "$hostname" "$env"
+     configure "$config_path" "$monitors" "$realm" "$access_token" "$insecure" "$cluster" "$hostname" "$env" "$trace_url"
   fi
   if [ $action = "config" ]; then
      rm -Rf /etc/signalfx
-     configure "$config_path" "$monitors" "$realm" "$access_token" "$insecure" "$cluster" "$hostname" "$env"
+     configure "$config_path" "$monitors" "$realm" "$access_token" "$insecure" "$cluster" "$hostname" "$env" "$trace_url"
   fi
   run
 
@@ -140,6 +145,7 @@ Options:
   --action <install|config>   Specify whether to run installation or update configuration only
   --package-version <version> The agent package version to instance
   --realm <us0|us1|eu0|...>   SignalFx realm to use (used to set --ingest-url and --api-url automatically)
+  --trace-endpoint <url>      Path to SignalFx trace endpoint or on-premise OpenTelemetry Collector
   --cluster <custer name>     The user-defined environment/cluster to use (corresponds to 'cluster' option in agent)
   --test                      Use the test package repo instead of the primary
   --beta                      Use the beta package repo instead of the primary
@@ -370,26 +376,43 @@ configure_api_url() {
 
 configure_cluster() {
   local cluster=$1
-
+  if [ -z $cluster ]; then
+    return
+  fi
   mkdir -p /etc/signalfx
   printf "%s" "$cluster" > /etc/signalfx/cluster
 }
 
 configure_hostname() {
   local hostname=$1
+
+  if [ -z $hostname ]; then
+    return
+  fi
+  mkdir -p /etc/signalfx
   printf "%s" "$hostname" > /etc/signalfx/hostname
 }  
 
 configure_env() {
   local env=$1
+
+  mkdir -p /etc/signalfx
   printf "%s" "$env" > /etc/signalfx/env
+} 
+
+configure_trace_url() {
+  local trace_url=$1
+
+  if [ -z $trace_url ]; then
+    return
+  fi
+  mkdir -p /etc/signalfx
+  printf "%s" "$trace_url" > /etc/signalfx/trace_endpoint
 } 
 
 get_config () {
   local config_path=$1
-  if [ ! -d "/etc/signalfx" ]; then
-	  mkdir /etc/signalfx
-  fi
+	mkdir -p /etc/signalfx
   if [[ $config_path =~ http.* ]]; then
     wget $config_path/agent.yaml -O /etc/signalfx/agent.yaml
   else
@@ -406,9 +429,7 @@ set_monitors() {
 	  return
   fi	  
   
-  if [ ! -d "/etc/signalfx/monitors" ]; then
-      mkdir /etc/signalfx/monitors
-  fi
+  mkdir -p /etc/signalfx/monitors
   
   for monitor in $monitors
     do 
@@ -470,6 +491,7 @@ configure() {
   local cluster="$6"
   local hostname="$7"
   local env="$8"
+  local trace_url="$9"
 
   if [ -z $access_token ]; then
     access_token=$(pull_access_token_from_config)
@@ -494,13 +516,14 @@ configure() {
   fi
 
   get_config "$config_path" 
-  set_monitors "$config_path" "$monitors"
   configure_access_token "$access_token"
   configure_ingest_url "https://ingest.$realm.signalfx.com"
   configure_api_url "https://api.$realm.signalfx.com"
   configure_cluster "$cluster"
   configure_hostname "$hostname"
   configure_env "$env"
+  configure_trace_url "$trace_url"
+  set_monitors "$config_path" "$monitors"
 
 }
 
