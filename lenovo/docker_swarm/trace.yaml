@@ -1,0 +1,3 @@
+  - type: signalfx-forwarder
+    listenAddress: 0.0.0.0:9080
+    environment: {"#from": "/etc/signalfx/env", optional: true}
