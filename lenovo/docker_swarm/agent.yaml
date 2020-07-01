@@ -3,6 +3,7 @@ signalFxAccessToken: {"#from": "/etc/signalfx/token"}
 ingestUrl: {"#from": "/etc/signalfx/ingest_url", default: "https://ingest.signalfx.com"}
 apiUrl: {"#from": "/etc/signalfx/api_url", default: "https://api.signalfx.com"}
 cluster: {"#from": "/etc/signalfx/cluster", optional: true}
+traceEndpointUrl: {"#from": "/etc/signalfx/trace_endpoint", optional: true}
 
 intervalSeconds: 10
 
@@ -33,3 +34,6 @@ monitors:
   - type: host-metadata
   - type: processlist
   - type: docker-container-stats
+  
+writer:
+  traceExportFormat: sapm
