@@ -7,7 +7,7 @@ Clone the image to your local repository where required.
 
 Create configuration directory on the host:
 ```
-signalfx-agent.sh 
+$ sudo sh signalfx-agent.sh 
     --action config \
     --realm us1 \
     --env <mandatory environment> \
