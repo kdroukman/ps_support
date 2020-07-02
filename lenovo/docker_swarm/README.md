@@ -71,6 +71,7 @@ Available auto-instrumentation options are listed here: [https://github.com/kdro
 _SignalFx can also accept Zipkin v1 or b2 JSON or Jaeger Thrift or gRPC format traces produced by any other libraries, such as OpenTelemetry. This is an option if provided libraries cannot be used._
 
 This following example illustrates setting up APM for Java microservice.
+
 _note: There are various ways to add libraries and environment variables to containers. This illustrates one such method._
 
 **1)** Download Java Trace agent .jar file from: https://github.com/signalfx/signalfx-java-tracing/releases
