@@ -104,7 +104,7 @@ Verify the contents of /etc/signalfx folder after running the script.
 ## Step 2:
 Run the docker container with appropriate volume mappings. 
 
-We provide a Docker image at[quay.io/signalfx/signalfx-agent](quay.io/signalfx/signalfx-agent). 
+We provide a Docker image at [quay.io/signalfx/signalfx-agent](http://quay.io/signalfx/signalfx-agent). 
 As instructed in pre-requisites, you can pull this image and push it to your local registry if necessary. 
 
 Start SignalFx Smart Agent with the following options. These will map the Smart Agent to host's network and bind APM trace listener to http://localhost:9080/ on the host. Additionally, the pre-build configuration files will be overwritten with those in you /etc/signalfx directory:
