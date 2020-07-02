@@ -24,19 +24,19 @@ See [Dimensions Names and Values](https://developers.signalfx.com/metrics/data_i
 ### parameters:
 The script accepts the following parameters:
 <code>
-  Option | Decription
----------|------------
-**--action <install\|config>**  | Specify whether to run installation or update configuration only. Optional. Default is 'install'
-**--package-version <version>** | The agent package version to install. Optional.
-**--realm <us0\|us1\|eu0\|...>** | SignalFx realm to use (used to set ingest-url and api-url automatically). Mandatory.
-**--trace-endpoint <url>**     | Path to SignalFx trace endpoint or on-premise OpenTelemetry Collector for send µAPM trace to. Optional for non-APM, mandatory for APM.
-**--cluster <custer name>**    | The user-defined environment/cluster to use (corresponds to 'cluster' option in agent). Optional - not necessary outside of K8s 
-**--test**                   | Use the test package repo instead of the primary. Optional
-**--beta**                    | Use the beta package repo instead of the primary. Optional
-**--env <environment name>**   | The name of Lenovo environment/application (liecomm, eservices, accounts, necpc -prod/-nonprod). Mandatory.
-**--hostname <hostname>**      | Override default hostname. Optional
-**--config_path <url of path>** | Location of agent.yaml and corresponding monitors. Mandatory to use custom config files. Otherwise the bare-bones default one will be used..
-**--monitors <list>**          | Comma (,) seperated list of monitors to load. Mandatory for any hosts that require any extra monitors enabled. Otherwise only host metrics will be collected.
+  Option | Decription | Optional/Mandatory
+---------|------------|-------------------
+**--action <install\|config>**  | Specify whether to run installation or update configuration only. | Optional. Default is 'install'
+**--package-version <version>** | The agent package version to install. | Optional.
+**--realm <us0\|us1\|eu0\|...>** | SignalFx realm to use (used to set ingest-url and api-url automatically). | Mandatory.
+**--trace-endpoint <url>**     | Path to SignalFx trace endpoint or on-premise OpenTelemetry Collector for send µAPM trace to. | Optional for non-APM, mandatory for APM.
+**--cluster <custer name>**    | The user-defined environment/cluster to use (corresponds to 'cluster' option in agent). | Optional - not necessary outside of K8s 
+**--test**                   | Use the test package repo instead of the primary. | Optional
+**--beta**                    | Use the beta package repo instead of the primary. | Optional
+**--env <environment name>**   | The name of Lenovo environment/application (liecomm, eservices, accounts, necpc -prod/-nonprod). | Mandatory.
+**--hostname <hostname>**      | Override default hostname. | Optional
+**--config_path <url of path>** | Location of agent.yaml and corresponding monitors. | Mandatory to use custom config files. Otherwise the bare-bones default one will be used..
+**--monitors <list>**          | Comma (,) seperated list of monitors to load. | Mandatory for any hosts that require any extra monitors enabled. Otherwise only host metrics will be collected.
   </code>
 
 Example command:
