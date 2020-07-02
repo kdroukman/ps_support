@@ -17,6 +17,7 @@ A lot of the monitor configurations here use discovery rules (discoveryRule) whi
 
 See [Service Discovery](https://github.com/signalfx/signalfx-agent/blob/master/docs/auto-discovery.md) for more details.
 
+### How monitor configuration has been set up
 To assist with configuration and management, each monitor has been split into a separate YAML file. 
 
 Once the installation/config script is run, the following folder structure is created on host:
