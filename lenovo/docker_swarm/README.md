@@ -24,6 +24,12 @@ In these Examples APM traces are being sent directly to SignalFx SaaS ingest URL
 Run signalfx-agent.sh script to set up configuration files in your /etc/signalfx directory on the host. 
 Ensure "--action config" is set so that only config files are created:
 
+Example command:
+```
+$ export SIGNALFX_ACCESS_TOKEN=abcdefghij123445656
+$ sh signalfx_agent.sh --realm us0 --action config --realm us1 --env eservice-prod --hostname kh-docker-1 --monitors trace,redis --config-path https://github.com/kdroukman/ps_support/releases/download/docker --trace-endpoint https://ingest.us1.signalfx.com/v2/trace $SIGNALFX_ACCESS_TOKEN
+```
+
 _note: There will be an error at the end of script output stating that signalfx-agent.service is not found. Ignore it. I will update the script to remove it._
 ```
 $ export SIGNALFX_ACCESS_TOKEN=<Change to your token value>
@@ -77,7 +83,7 @@ _note: There are various ways to add libraries and environment variables to cont
 **1)** Download Java Trace agent .jar file from: https://github.com/signalfx/signalfx-java-tracing/releases
 **2)** Add the .jar file to a location in your container by packaging it into an image:
 
-Dockerfile (for a basic Spring Pet Clinic applicatoin):
+Dockerfile (for a basic Spring Pet Clinic application):
 ```
 FROM java:8
 COPY ./spring-petclinic/target/ /var/www/java
