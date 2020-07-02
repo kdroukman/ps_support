@@ -1,0 +1,8 @@
+  - type: collectd/rabbitmq
+    discoveryRule: container_name =~ "rabbitmq" && port == 15672
+    brokerName: /MSA
+    username: 
+    password: 
+    collectExchanges: yes
+    collectNodes: yes
+    collectQueues: yes
