@@ -21,46 +21,63 @@ See [Remote Configuration](https://docs.signalfx.com/en/latest/integrations/agen
 ### caution:
 See [Dimensions Names and Values](https://developers.signalfx.com/metrics/data_ingest_overview.html#_dimension_names_and_values) documentation for guidance on naming your environments and hosts. 
 
+### parameters:
+The script accepts the following parameters:
+  --action <install|config>   Specify whether to run installation or update configuration only. Optional. Default is 'install'
+  --package-version <version> The agent package version to install. Optional.
+  --realm <us0|us1|eu0|...>   SignalFx realm to use (used to set ingest-url and api-url automatically). Mandatory.
+  --trace-endpoint <url>      Path to SignalFx trace endpoint or on-premise OpenTelemetry Collector for send µAPM trace to. Optional for non-APM, mandatory for APM.
+  --cluster <custer name>     The user-defined environment/cluster to use (corresponds to 'cluster' option in agent). Optional - not necessary outside of K8s
+  --test                      Use the test package repo instead of the primary. Optional
+  --beta                      Use the beta package repo instead of the primary. Optional
+  --env <environment name>    The name of Lenovo environment/application (liecomm, eservices, accounts, necpc -prod/-nonprod). Mandatory.
+  --hostname <hostname>       Override default hostname. Optional
+  --config_path <url of path> Location of agent.yaml and corresponding monitors. Mandatory to use custom config files. Otherwise the bare-bones default one will be used..
+  --monitors <list>           Comma (,) seperated list of monitors to load. Mandatory for any hosts that require any extra monitors enabled. Otherwise only host metrics will be collected.
+
 Example command:
 ```
 $ export SIGNALFX_ACCESS_TOKEN=abcdefg12345677
 $ sudo sh signalfx-agent.sh --action install --realm us1 --env liecomm-nonprod --hostname my-test-host --monitors mysql --config-path https://github.com/kdroukman/ps_support/releases/download/standard $SIGNALFX_ACCESS_TOKEN
 ```
 
-To install on new host:
+## To install on new host:
 ```
-  $sudo sh signalfx-agent.sh \
+  $ export SIGNALFX_ACCESS_TOKEN=<your access token>
+  $ sudo sh signalfx-agent.sh \
   --action install \
   --realm us1 \
-  --env <environment name> \
-  --hostname <override hostname> \
-  --monitors <extra monitors to add> \
-  --config-path <path to yaml templates> \
-  SIGNALFX_ACCESS_TOKEN
+  --env <environment name - mandatory> \
+  --hostname <override hostname - optional> \
+  --monitors <extra monitors to add - optional> \
+  --config-path <path to yaml templates - mandatory> \
+  $SIGNALFX_ACCESS_TOKEN
 ```
 
-To update a version:
+## To update a version:
 ```
-  $sudo rm -Rf /etc/signalfx
-  $sudo sh signalfx-agent.sh \
+  $ sudo rm -Rf /etc/signalfx
+  $ export SIGNALFX_ACCESS_TOKEN=<your access token>
+  $ sudo sh signalfx-agent.sh \
   --action install \
   --realm us1 \
-  --env <environment name> \
-  --hostname <override hostname> \
-  --monitors <extra monitors to add> \
-  --config-path <path to yaml templates> \
+  --env <environment name - mandatory> \
+  --hostname <override hostname - optional> \
+  --monitors <extra monitors to add - optional> \
+  --config-path <path to yaml templates - mandatory> \
   --package-version <version> \
-  SIGNALFX_ACCESS_TOKEN
+  $SIGNALFX_ACCESS_TOKEN
 ```
   
-To update configuration:
+## To update configuration:
 ```
-  $sudo sh signalfx-agent.sh \
+  $ export SIGNALFX_ACCESS_TOKEN=<your access token>
+  $ sudo sh signalfx-agent.sh \
   --action config \
   --realm us1 \
-  --env <environment name> \
-  --hostname <override hostname> \
-  --monitors <extra monitors to add> \
-  --config-path <path to yaml templates> \
-  SIGNALFX_ACCESS_TOKEN
+  --env <environment name - mandatory> \
+  --hostname <override hostname - optional> \
+  --monitors <extra monitors to add - optional> \
+  --config-path <path to yaml templates - mandatory> \
+  $SIGNALFX_ACCESS_TOKEN
 ```
