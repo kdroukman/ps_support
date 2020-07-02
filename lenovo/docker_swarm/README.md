@@ -61,4 +61,39 @@ $ docker run \
 
 Verify that the agent is running with docker ps command, or check the logs with docker logs <container name>.
     
-    
+## Adding APM
+
+The SignalFx Smart Agent configured as per above will already expose endpoint on http://localhost:9080 and add the necessary environment tag to all the traces.
+You will need to apply the necessary instrumentation to your application microservices. 
+
+Available auto-instrumentation options are listed here: [https://github.com/kdroukman/ps_support/blob/master/lenovo/standard/README.md](https://github.com/kdroukman/ps_support/blob/master/lenovo/standard/README.md)
+
+_SignalFx can also accept Zipkin v1 or b2 JSON or Jaeger Thrift or gRPC format traces produced by any other libraries, such as OpenTelemetry. This is an option if provided libraries cannot be used._
+
+This following example illustrates setting up APM for Java microservice.
+_note: There are various ways to add libraries and environment variables to containers. This illustrates one such method._
+
+**1)** Download Java Trace agent .jar file from: https://github.com/signalfx/signalfx-java-tracing/releases
+**2)** Add the .jar file to a location in your container by packaging it into an image:
+
+Dockerfile (for a basic Spring Pet Clinic applicatoin):
+```
+FROM java:8
+COPY ./spring-petclinic/target/ /var/www/java
+RUN mkdir -p /opt/signalfx-tracing
+COPY signalfx-tracing.jar /opt/signalfx-tracing
+WORKDIR /var/www/java
+
+CMD java -javaagent:/opt/signalfx-tracing/signalfx-tracing.jar -jar *.jar
+```
+
+**3)** Run the docker container and pass in SignalFx environment variables as requierd by the Tracing library. Here, only the environment varilable are what is required to setup service name and direct traces to Smart Agent listere. The other options are specific to the application service itself.
+
+```
+docker run -p 8080:8080 --env SIGNALFX_SERVICE_NAME=kh-pet-clinic --env SIGNALFX_ENDPOINT_URL=http://$HOSTNAME:9080/v1/trace -d  pet-clinic
+```
+
+You can specify additional optional SignalFx variables are per documentation: [https://github.com/signalfx/signalfx-java-tracing](https://github.com/signalfx/signalfx-java-tracing)
+
+For example you can use SIGNALFX_SPAN_TAGS to tag your traces with additional custom details. eg: `SIGNALFX_SPAN_TAGS="release:canary,version:2.1"`
+This will be viewable and searchable when examining traces in SignalFx.
