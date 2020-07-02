@@ -7,7 +7,7 @@ Clone the image to your local repository where required.
 
 Create configuration directory on the host:
 ```
-$ sudo sh signalfx-agent.sh 
+$ sudo sh signalfx-agent.sh \
     --action config \
     --realm us1 \
     --env <mandatory environment> \
@@ -26,7 +26,7 @@ We provide a Docker image at <a href=quay.io/signalfx/signalfx-agent>quay.io/sig
 If you are using Docker outside of Kubernetes, you can run the agent in a Docker container and still gather metrics on the underlying host by running it with the following flags:
 
 ```
-$ docker run 
+$ docker run \
     --name signalfx-agent \ 
     --pid host \
     --net host \
