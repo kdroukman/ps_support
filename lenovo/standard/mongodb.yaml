@@ -1,8 +1,8 @@
-- type: collectd/mongodb
+  - type: collectd/mongodb
     discoveryRule: host == "10.62.109.136" && port == 27017 
     databases: ["admin","DIT1","SIT","V3-DIT1","V3-SIT"]
 
-- type: collectd/mongodb
+  - type: collectd/mongodb
     discoveryRule: host == "10.62.101.60" && port == 27017 
     username: collectd
     password: collectd
