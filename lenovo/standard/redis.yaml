@@ -1,2 +1,2 @@
- - type: collectd/redis
-   discoveryRule: command =~ "redis" && port == 6379
+  - type: collectd/redis
+    discoveryRule: command =~ "redis" && port == 6379
