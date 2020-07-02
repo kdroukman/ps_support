@@ -1,9 +1,16 @@
   - type: haproxy
-    discoveryRule: command =~ "haproxy"
-    port: 8080
-    
- - type: haproxy
-   discoveryRule: command =~ "haproxy"
-   port: 8090
-  
+    discoveryRule: command =~ "haproxy" && port == 1001
+#   datapointsToExclude: ["stats-frontend-1","stats-backend-1"]
+
+  - type: haproxy
+    discoveryRule: command =~ "haproxy" && port == 1002
+#    datapointsToExclude: ["stats-frontend-2","stats-backend-2"]
+
+  - type: haproxy
+    discoveryRule: command =~ "haproxy" && port == 1003
+#    datapointsToExclude: ["stats-frontend-3","stats-backend-3"]
+
+  - type: haproxy
+    discoveryRule: command =~ "haproxy" && port == 1004
+#   datapointsToExclude: ["stats-frontend-4","stats-backend-4"]
 

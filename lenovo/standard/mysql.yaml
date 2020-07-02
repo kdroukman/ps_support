@@ -1,2 +1,11 @@
-  - type: collecd/mysql
-    discoveryRule: command =~ "mysql"
+  - type: collectd/mysql
+    discoveryRule: command =~ "mysql" && host == "10.62.109.135" && port == 3306
+    databases:
+      - name: ap_cms_sit
+      - name: na_cms_sit
+      - name: la_cms_sit
+      - name: emea_cms_sit
+      - name: dcg_cms_sit
+      - name: global_cms_sit
+    username: 
+    password: 
