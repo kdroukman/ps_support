@@ -23,6 +23,7 @@ See [Dimensions Names and Values](https://developers.signalfx.com/metrics/data_i
 
 ### parameters:
 The script accepts the following parameters:
+```
   --action <install|config>   Specify whether to run installation or update configuration only. Optional. Default is 'install'
   --package-version <version> The agent package version to install. Optional.
   --realm <us0|us1|eu0|...>   SignalFx realm to use (used to set ingest-url and api-url automatically). Mandatory.
@@ -34,6 +35,7 @@ The script accepts the following parameters:
   --hostname <hostname>       Override default hostname. Optional
   --config_path <url of path> Location of agent.yaml and corresponding monitors. Mandatory to use custom config files. Otherwise the bare-bones default one will be used..
   --monitors <list>           Comma (,) seperated list of monitors to load. Mandatory for any hosts that require any extra monitors enabled. Otherwise only host metrics will be collected.
+  ```
 
 Example command:
 ```
