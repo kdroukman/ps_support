@@ -5,7 +5,7 @@ On a Standard host you will be setting up SignalFx Smart Agent, and correspondin
 The provided installation and configuration script - `signalfx-agent.sh` - does most of the work for you by installing the agent and importing correct configuration files to a specific directory on your hosts - `/etc/signalfx`
 
 You are required to host the configuration files centrally, either on a network file system, or GitLab. If you are unable to set up the central repository at the time of installation, download the .yaml files to a local files system, or alternatively you can fetch them from here:
-[https://github.com/kdroukman/ps_support/releases/download/standard](https://github.com/kdroukman/ps_support/releases/download/standard/agent.yaml)
+[https://github.com/kdroukman/ps_support/releases/download/standard](https://github.com/kdroukman/ps_support/releases/download/standard)
 
 All the YAML files that the installer script relies on must be in the `--config-path` directory or URL passed to the installation script. The script will place them in the appropriate directories. 
 
