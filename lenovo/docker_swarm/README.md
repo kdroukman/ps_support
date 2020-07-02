@@ -95,6 +95,7 @@ CMD java -javaagent:/opt/signalfx-tracing/signalfx-tracing.jar -jar *.jar
 ```
 
 **3)** Run the docker container and pass in SignalFx environment variables that are requierd by the Tracing library. Here, only the environment varilables are what is required to setup service name and direct traces to Smart Agent listener. The other options are specific to the application service itself.
+Notice that the trace listener at `http://localhost:9080` endpoint can only be access on the host, not within he container. Therefore, the $HOSTNAME value is passed to the container, so that it can send traces to the necessary endpoint.
 
 ```
 docker run -p 8080:8080 --env SIGNALFX_SERVICE_NAME=kh-pet-clinic --env SIGNALFX_ENDPOINT_URL=http://$HOSTNAME:9080/v1/trace -d  pet-clinic
