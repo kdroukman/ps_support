@@ -29,7 +29,7 @@ Once the installation/config script is run, the following folder structure is cr
 /etc/signalfx/monitors/<monitorN>.yaml
 ```
 
-### How reference sensitive data in configuration files
+### How to reference sensitive data in configuration files
 For sensitive data, such as passwords, Vault or Zookeeper can be used. 
 See [Remote Configuration](https://docs.signalfx.com/en/latest/integrations/agent/remote-config.html) for examples on how to set this.
 
