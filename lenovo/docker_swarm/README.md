@@ -27,13 +27,13 @@ If you are using Docker outside of Kubernetes, you can run the agent in a Docker
 
 ```
 $ docker run 
-    --name signalfx-agent 
-    --pid host 
-    --net host 
-    -v /:/hostfs:ro 
-    -v /var/run/docker.sock:/var/run/docker.sock:ro 
-    -v /etc/signalfx/:/etc/signalfx/:ro 
-    -v /etc/passwd:/etc/passwd:ro 
+    --name signalfx-agent \ 
+    --pid host \
+    --net host \
+    -v /:/hostfs:ro \ 
+    -v /var/run/docker.sock:/var/run/docker.sock:ro \ 
+    -v /etc/signalfx/:/etc/signalfx/:ro \ 
+    -v /etc/passwd:/etc/passwd:ro \
     quay.io/signalfx/signalfx-agent:<version>
 ```
 This assumes you have the agent config in the conventional directory (/etc/signalfx) on the root mount namespace. This also assumed you are using the provided image. Change the defaults as necessary.
