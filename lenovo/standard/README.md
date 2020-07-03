@@ -36,6 +36,15 @@ See [Remote Configuration](https://docs.signalfx.com/en/latest/integrations/agen
 ### caution:
 See [Dimensions Names and Values](https://developers.signalfx.com/metrics/data_ingest_overview.html#_dimension_names_and_values) documentation for guidance on naming your environments and hosts. 
 
+### The importance of Environment variable
+It has been agreed that the environment variable will be used to correlate and filter all data across the prod and non-prod infrastructure and application environments. It accepts 8 values:
+- licomm-prod, licomm-nonprod
+- eservice-prod, eservices-nonprod
+- necpc-prod, necpc-nonprod
+- accounts-prod, accounts-nonprod
+
+All the configuration settings are being designed to include this. Therefore, you must use configurations provided here, and not the ones installed by RPM or packaged into the provided Docker image. 
+
 ### parameters:
 The script accepts the following parameters:
 <code>
