@@ -2,7 +2,7 @@
 
 On a Standard host you will be setting up SignalFx Smart Agent, and corresponding configuration that is provided by master file - `agent.yaml` - and supplementary files for each of the required monitors to be switched on the host - eg: `haproxy.yaml`, `redis.yaml`. 
 
-The provided installation and configuration script - `signalfx-agent.sh` - does most of the work for you by installing the agent and importing correct configuration files to a specific directory on your hosts - `/etc/signalfx`
+The provided installation and configuration script - `signalfx_agent.sh` - does most of the work for you by installing the agent and importing correct configuration files to a specific directory on your hosts - `/etc/signalfx`
 
 You are required to host the configuration files centrally, either on a network file system, or GitLab. If you are unable to set up the central repository at the time of installation, download the .yaml files to a local files system, or alternatively you can fetch them from here:
 [https://github.com/kdroukman/ps_support/releases/download/standard](https://github.com/kdroukman/ps_support/releases/download/standard)
@@ -72,7 +72,7 @@ $ sudo sh signalfx-agent.sh --action install --realm us1 --env liecomm-nonprod -
 ## To install on new host:
 ```
   $ export SIGNALFX_ACCESS_TOKEN=<your access token>
-  $ sudo sh signalfx-agent.sh \
+  $ sudo sh signalfx_agent.sh \
   --action install \
   --realm us1 \
   --env <environment name - mandatory> \
@@ -86,7 +86,7 @@ $ sudo sh signalfx-agent.sh --action install --realm us1 --env liecomm-nonprod -
 ```
   $ sudo rm -Rf /etc/signalfx
   $ export SIGNALFX_ACCESS_TOKEN=<your access token>
-  $ sudo sh signalfx-agent.sh \
+  $ sudo sh signalfx_agent.sh \
   --action install \
   --realm us1 \
   --env <environment name - mandatory> \
@@ -100,7 +100,7 @@ $ sudo sh signalfx-agent.sh --action install --realm us1 --env liecomm-nonprod -
 ## To update configuration:
 ```
   $ export SIGNALFX_ACCESS_TOKEN=<your access token>
-  $ sudo sh signalfx-agent.sh \
+  $ sudo sh signalfx_agent.sh \
   --action config \
   --realm us1 \
   --env <environment name - mandatory> \
