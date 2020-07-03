@@ -7,7 +7,7 @@ metadata:
     app: signalfx-agent-env
 data:
 # >>>> Set your environment variables here:
-  CLUSTER_NAME: "kh-minikube"
-  ENV_NAME: "eservice-prod"
-  REALM: "us0"
-  TRACE_ENDPOINT: "https://ingest.us0.signalfx.com/v2/trace"
+  CLUSTER_NAME: "<Update to your cluster name>"
+  ENV_NAME: "<Update to one of eservice-prod, eservice-nonprod, liecomm-prod, liecomm-nonprod, accounts-prod, accounts-nonprod, necpc-prod,necpc-nonprod>"
+  REALM: "us1"
+  TRACE_ENDPOINT: "https://ingest.us1.signalfx.com/v2/trace"
