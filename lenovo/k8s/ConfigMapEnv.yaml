@@ -1,0 +1,13 @@
+# Source: signalfx-agent/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: signalfx-agent-env
+  labels:
+    app: signalfx-agent-env
+data:
+# >>>> Set your environment variables here:
+  CLUSTER_NAME: "kh-minikube"
+  ENV_NAME: "eservice-prod"
+  REALM: "us0"
+  TRACE_ENDPOINT: "https://ingest.us0.signalfx.com/v2/trace"

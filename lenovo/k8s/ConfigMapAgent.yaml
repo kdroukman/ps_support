@@ -1,0 +1,155 @@
+---
+# Source: signalfx-agent/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: signalfx-agent-config
+  labels:
+    app: signalfx-agent-config
+data:
+# Do not change bellow  
+  agent.yaml: |
+    signalFxAccessToken: ${SFX_ACCESS_TOKEN}
+
+    signalFxRealm: ${REALM}
+
+    disableHostDimensions: false
+
+    etcPath: /hostfs/etc
+    procPath: /hostfs/proc
+
+    enableBuiltInFiltering: true
+
+    intervalSeconds: 10
+
+    cluster: ${CLUSTER_NAME}
+
+    traceEndpointUrl: ${TRACE_ENDPOINT}
+
+    writer:
+      signalFxEnabled: true
+
+    logging:
+      level: info
+      format: text
+
+    globalDimensions:
+      kubernetes_cluster: ${CLUSTER_NAME}
+      environment: ${ENV_NAME}
+
+    observers:
+    - type: k8s-api
+      discoverAllPods: false
+      discoverNodes: false
+
+    monitors:
+    - type: cpu
+    - type: filesystems
+      hostFSPath: /hostfs
+    - type: disk-io
+    - type: net-io
+    - type: load
+    - type: memory
+    - type: host-metadata
+    - type: processlist
+    - type: vmem
+
+
+    - type: kubelet-metrics
+      kubeletAPI:
+        authType: serviceAccount
+      usePodsEndpoint: true
+
+    # Collects k8s cluster-level metrics
+    - type: kubernetes-cluster
+
+    - type: docker-container-stats
+      dockerURL: unix:///var/run/docker.sock
+      excludedImages:
+       - '*pause-amd64*'
+       - 'k8s.gcr.io/pause*'
+      labelsToDimensions:
+        io.kubernetes.container.name: container_spec_name
+        io.kubernetes.pod.name: kubernetes_pod_name
+        io.kubernetes.pod.uid: kubernetes_pod_uid
+        io.kubernetes.pod.namespace: kubernetes_namespace
+
+    - type: signalfx-forwarder
+      listenAddress: 0.0.0.0:9080
+      defaultSpanTags:
+        environment: ${ENV_NAME}
+    
+    - type: collectd/activemq
+      discoveryRule: container_image =~ "activemq" && private_port == 1099
+
+    - type: collectd/apache
+      discoveryRule: container_image =~ "apache" && private_port == 80
+
+    - type: collectd/cassandra
+      discoveryRule: container_image =~ "cassandra" && private_port == 7199
+
+    - type: collectd/consul
+      discoveryRule: container_image =~ "consul" && private_port == 8500
+
+    - type: collectd/elasticsearch
+      discoveryRule: container_image =~ "elasticsearch" && port == 9200
+
+    - type: collectd/etcd
+      discoveryRule: container_image =~ "etcd" && port == 2379
+      clusterName: my-cluster
+
+    - type: haproxy
+      discoveryRule: container_image =~ "haproxy" && port == 9000
+
+    - type: collectd/kafka
+      discoveryRule: container_image =~ "kafka" && private_port == 9092
+
+    - type: collectd/memcached
+      discoveryRule: container_image =~ "memcache" && private_port == 11211
+
+    - type: collectd/mongodb
+      discoveryRule: container_image =~ "mongo" && private_port == 27017
+      databases:
+      - mydatabase
+
+    - type: collectd/mysql
+      discoveryRule: container_image =~ "mysql" && private_port == 3306
+      databases:
+      - name: mydb
+      username: admin
+
+    - type: collectd/nginx
+      discoveryRule: container_image =~ "nginx" && private_port == 80
+
+    - type: collectd/rabbitmq
+      discoveryRule: container_image =~ "rabbitmq" && private_port == 15672
+
+    - type: collectd/redis
+      discoveryRule: container_image =~ "redis" && private_port == 6379
+
+    - type: collectd/spark
+      discoveryRule: container_image =~ "spark" && private_port == 8080
+      clusterType: Standalone
+      collectApplicationMetrics: true
+      isMaster: true
+
+    - type: collectd/spark
+      discoveryRule: container_image =~ "spark" && private_port >= 8081
+      clusterType: Standalone
+      isMaster: false
+
+    - type: collectd/zookeeper
+      discoveryRule: container_image =~ "zookeeper" && private_port == 2181
+
+    collectd:
+      readThreads: 5
+      writeQueueLimitHigh: 500000
+      writeQueueLimitLow: 400000
+      timeout: 40
+      logLevel: info
+
+    metricsToExclude:
+      # The StackDriver metadata-agent pod on GKE restarts every few minutes so
+      # ignore its containers
+      - dimensions:
+          container_spec_name: metadata-agent
