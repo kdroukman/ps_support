@@ -12,7 +12,7 @@ The provided YAML do most of the work for you by setting up the Smart Agent and 
 
 You can download and host these configuration files centrally, together with your existing Kubernetes configurations. 
 The listed files are also available for download here:
-[https://github.com/kdroukman/ps_support/releases/download/k8s](https://github.com/kdroukman/ps_support/releases/download/k8s)
+[https://github.com/kdroukman/ps_support/releases/tag/k8s](https://github.com/kdroukman/ps_support/releases/tag/k8s)
 
 You will be using command line tool provided by Kubernetes - `kubectl` - to perform the deployments. 
 
