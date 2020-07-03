@@ -69,7 +69,7 @@ In these Examples APM traces are being sent directly to SignalFx SaaS ingest URL
 
 ## Step 1: 
 
-Download all the YAML files listed here to a directory where you will be deploying them from. 
+Download all the YAML files listed here (excpet Pet Clinic Deployment example) to a directory where you will be deploying them from. 
 ```
 $ mkdir signalfx
 $ cd signalfx
