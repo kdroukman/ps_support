@@ -13,7 +13,7 @@ The configurations provided are based on POC setup, and default assumptions. You
 
 ### How Discovery Rules work
 
-A lot of the monitor configurations here use discovery rules (discoveryRule) which allows you to create different monitors and different permutations of the same monitor for different hosts. If a discoveryRule finds a matching service, it will switch on the monitor. Other the monitor will not turn on, even if it is available on the host. 
+A lot of the monitor configurations here use discovery rules (discoveryRule) which allows you to create different monitors and different permutations of the same monitor for different hosts. If a discoveryRule finds a matching service, it will switch on the monitor. Otherwise the monitor will not turn on.
 
 See [Service Discovery](https://github.com/signalfx/signalfx-agent/blob/master/docs/auto-discovery.md) for more details.
 
