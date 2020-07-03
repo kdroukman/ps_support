@@ -107,8 +107,8 @@ Verify that the agent is running with `kubectl get ds` command, or check events 
     
 ## Adding APM
 
-The SignalFx Smart Agent configured as per above will already expose endpoint on http://localhost:9080 and add the necessary environment tag to all the traces.
-You will need to apply the necessary instrumentation to your application microservices. 
+The SignalFx Smart Agent configured as per above will already expose endpoint on ``http://<NODE_IP>:9080`` on all nodes where the agent is running, and add the necessary environment tag to all the traces.
+You will need to apply the necessary instrumentation to your application microservices hosted in Kuberentes. 
 
 Available auto-instrumentation options are listed here: [https://github.com/kdroukman/ps_support/blob/master/lenovo/standard/README.md](https://github.com/kdroukman/ps_support/blob/master/lenovo/standard/README.md)
 
@@ -116,7 +116,8 @@ _SignalFx can also accept Zipkin v1 or b2 JSON or Jaeger Thrift or gRPC format t
 
 This following example illustrates setting up APM for a Java microservice.
 
-_note: There are various ways to add libraries and environment variables to containers. This illustrates one such method._
+
+_note: There are various ways to add libraries and environment variables to containers and Kubernetes provides a lot of flexibility around this. This illustrates one such method._
 
 **1)** Download Java Trace agent .jar file from: https://github.com/signalfx/signalfx-java-tracing/releases
 **2)** Add the .jar file to a location in your container by packaging it into an image:
@@ -132,14 +133,89 @@ WORKDIR /var/www/java
 CMD java -javaagent:/opt/signalfx-tracing/signalfx-tracing.jar -jar *.jar
 ```
 
-**3)** Run the docker container and pass in SignalFx environment variables that are requierd by the Tracing library. Here, only the environment varilables are what is required to setup service name and direct traces to Smart Agent listener. The other options are specific to the application service itself.
-Notice that the trace listener at `http://localhost:9080` endpoint can only be accessed on the host, not within the container. Therefore, the $HOSTNAME value is passed to the container, so that it can send traces to the necessary endpoint.
+**3)** Set up your Deployment to pass in the required environment variables. In the bellow example we have PetClinicDeployment.yaml.
+
+Notice specifically the environment setting section. The tracing agent is already packaged into our image so we don't reference it here.
+We name the service, and also derive the IP of the node which will become our NODE_IP. 
+Here, you can also see we are setting some optional tags with `SIGNALFX_SPAN_TAGS`. These will be sent with the traces to SignalFx. 
+
+Env:
+```
+ env:
+        - name: SIGNALFX_SERVICE_NAME
+          value: "pet-clinic"
+        - name: "SIGNALFX_AGENT_HOST"
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.hostIP
+        - name: SIGNALFX_SPAN_TAGS
+          value: "release:k8s,version:1.0,clinic-name:PetsParadise"
+```
+
+The Java command in our container is simple. More often you would use `java $JAVA_OPTS -jar *.jar` to pass in more complex commands. Here, we are providing a simple example. For other languages, the setup will be different. Remember that APM setup is language specific. 
+
+Full text of PetClinic.yaml:
 
 ```
-docker run -p 8080:8080 --env SIGNALFX_SERVICE_NAME=kh-pet-clinic --env SIGNALFX_ENDPOINT_URL=http://$HOSTNAME:9080/v1/trace -d  pet-clinic
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: pet-clinic
+spec:
+  selector:
+    matchLabels:
+      app: pet-clinic
+  replicas: 1
+  template: 
+    metadata:
+      labels:
+        app: pet-clinic
+    spec:
+      containers:
+      - name: pet-clinic
+        image: katehymers/pet-clinic:latest
+        env:
+        - name: SIGNALFX_SERVICE_NAME
+          value: "pet-clinic"
+        - name: "SIGNALFX_AGENT_HOST"
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.hostIP
+        - name: SIGNALFX_SPAN_TAGS
+          value: "release:k8s,version:1.0,clinic-name:PetsParadise"
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pet-clinic-service
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service.
+  type: LoadBalancer
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: pet-clinic
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: k8s-agent-readall-role-binding
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: default
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-read-all
+---
 ```
 
 You can specify additional optional SignalFx variables are per documentation: [https://github.com/signalfx/signalfx-java-tracing](https://github.com/signalfx/signalfx-java-tracing)
-
-For example you can use SIGNALFX_SPAN_TAGS to tag your traces with additional custom details. eg: `SIGNALFX_SPAN_TAGS="release:canary,version:2.1"`
-This will be viewable and searchable when examining traces in SignalFx.
