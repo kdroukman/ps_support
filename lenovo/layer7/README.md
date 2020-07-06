@@ -8,7 +8,7 @@ Create a temporary directory on your host and download or copy the necessary fil
 
 - Download the agent tar.gz bundle from here: [https://github.com/signalfx/signalfx-agent/releases/download/v5.3.3/signalfx-agent-5.3.3.tar.gz](https://github.com/signalfx/signalfx-agent/releases/download/v5.3.3/signalfx-agent-5.3.3.tar.gz)
 
-- Download the configuration settup script and make it executable:
+- Download the configuration setup script and make it executable:
 ```
 $ sudo wget https://raw.githubusercontent.com/kdroukman/ps_support/master/lenovo/signalfx_agent.sh
 $ sudo chmod 744 signalfx_agent.sh
