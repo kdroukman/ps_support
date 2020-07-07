@@ -137,7 +137,7 @@ Verify that the agent is running with docker ps command, or check the logs with 
 The SignalFx Smart Agent configured as per above will already expose endpoint on http://localhost:9080 and add the necessary environment tag to all the traces.
 You will need to apply the necessary instrumentation to your application microservices. 
 
-Available auto-instrumentation options are listed here: [https://github.com/kdroukman/ps_support/blob/master/lenovo/standard/README.md](https://github.com/kdroukman/ps_support/blob/master/lenovo/standard/README.md)
+Available auto-instrumentation options are listed here: [https://docs.signalfx.com/en/latest/apm/apm-instrument/apm-instr-overview.html#automatically-instrument-an-application](https://docs.signalfx.com/en/latest/apm/apm-instrument/apm-instr-overview.html#automatically-instrument-an-application)
 
 _SignalFx can also accept Zipkin v1 or b2 JSON or Jaeger Thrift or gRPC format traces produced by any other libraries, such as OpenTelemetry. This is an option if provided libraries cannot be used._
 
