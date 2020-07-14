@@ -93,6 +93,7 @@ Enable the service to be automatically started on boot:
 $ sudo chkconfig signalfx-agent on
 ```
 
+
 ## Setup APM Metrics Forwarder
 
 ### Pre-requsites
@@ -140,7 +141,7 @@ Download the APM Metrics Forwarder service to your RHEL or CentOS host:
 Download the following file to your `init.d` directory and make it executable:
 
 ```
-$ sudo wget https://github.com/kdroukman/ps_support/blob/master/lenovo/layer7/signalfx-l7-forwarder-9_3.init -O /etc/init.d/signalfx-l7-forwarder
+$ sudo wget https://raw.githubusercontent.com/kdroukman/ps_support/master/lenovo/layer7/signalfx-l7-forwarder-9_3.init -O /etc/init.d/signalfx-l7-forwarder
 $ sudo chmod 755 /etc/init.d/signalfx-l7-forwarder
 ```
 
@@ -170,3 +171,18 @@ Should you have any issues with starting the service, execute the following step
 2) Restart the service. 
 3) Collect logs at `/var/log/signalfx-l7-forwarder.log` and send to our team for troubleshooting. 
 
+
+### Metrics
+
+SignalFx APM Metrics Forwarder for Layer 7 version 9.3 collects the following metrics:
+Metric Name | Type | Dimensions
+------------|------|-----------
+l7.avg_resp_time.ms | gauge | host, service_uri, type (frontend or backend), environment
+l7.req_size.bytes | gauge | host, service_uri, environment
+l7.res_size.bytes | gauge | host, service_uri, environment
+l7.request.success_count | counter | host, service_uri, environment
+l7.request.count | counter | host, service_uri, environment
+
+
+
+## Setting up the Metrics Forwarder on Layer 7 API Gateway version 9.4+ (or later)
