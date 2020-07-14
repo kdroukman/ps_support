@@ -189,7 +189,7 @@ l7.request.count | counter | host, service_uri, environment
 
 **Pre-requisites**
 1) APM Metrics Forwarder for Layer 7 API Gateway version 9.4 or later can be deployed either on each of the nodes, or centrally on a separate server. 
-If you are preparing a new server to host the gateway, **make sure you install SignalFx Smart Agent on it**, and Python with necessary modules such as `requests` and `argparse`.
+If you are preparing a new server to host the SignalFx Forwarder, **make sure you install SignalFx Smart Agent on it**, and Python with necessary modules such as `requests` and `argparse`.
 2) **Prepare the services for APM Metric collection by Configuring Layer 7 Gateway for External Metrics Collection** as documented in [Configure Gateway for External Metrics Collection](https://techdocs.broadcom.com/content/broadcom/techdocs/us/en/ca-enterprise-software/layer7-api-management/api-gateway/9-4/learning-center/overview-of-the-policy-manager/gateway-dashboard/configure-gateway-for-external-service-metrics.html)
 3) When creating Service Metrics Event Listener Backing Policy, make sure that the output format is in the exact JSON format as per bellow. This is the format that the SignalFx APM Metrics Forwarder expects as input:
 ```
