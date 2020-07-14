@@ -15,6 +15,7 @@ import json
 import requests
 import threading
 import re
+import sys
 
 
 def process_args():
@@ -41,7 +42,10 @@ log_file = config.get('Logging','file')
 log_level = getattr(logging, config.get('Logging', 'level').upper())
 dopost = bool(config.get('SignalFx','dopost'))
 
-log_handler = RotatingFileHandler(log_file, maxBytes=5*1024*1024, backupCount=2)
+if log_file == "stdout":
+    log_handler = logging.StreamHandler(sys.stdout)
+else:
+    log_handler = RotatingFileHandler(log_file, maxBytes=5*1024*1024, backupCount=2)
 log_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 log_handler.setFormatter(log_formatter)
 
