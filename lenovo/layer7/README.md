@@ -209,10 +209,11 @@ If you are preparing a new server to host the SignalFx Forwarder, **make sure yo
  "time":"1587550389361000000"}
  }
 ```
-Do not deviate from the above format. Do not use an escape sequence when printing out quotes - eg. make sure the output is `"request"`, not `\"request\"`.
-3) In the Backing Policy you are creating, set the metrics to be Routed to the Appropriate HTTP Server. 
-  3.1) If you are deploying the Forwarder to each of the nodes - it should be `http://<NODE IP>:9080` 
-  3.2) If you are deploying the Forwarder to a central server - it should be `http://<CENTRAL SERVER IP OR DNS>:9080`
+Do not deviate from the above format. Do not use an escape sequence when printing out quotes - eg. make sure the strings in the output look like this: `"request"`, not this: `\"request\"`.
+
+In the Backing Policy you are creating, set the metrics to be Routed to the Appropriate HTTP Server. 
+  1) If you are deploying the Forwarder to each of the nodes - it should be `http://<NODE IP>:9080` 
+  2) If you are deploying the Forwarder to a central server - it should be `http://<CENTRAL SERVER IP OR DNS>:9080`
   _Disclaimer: If port 9080 is in use by another application, you can change it to another suitable port number_
 
 **Test the JSON Output**
