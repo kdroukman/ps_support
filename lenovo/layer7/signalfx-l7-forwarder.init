@@ -20,14 +20,13 @@
 dir="/etc/signalfx-l7-forwarder"
 config="$dir/config.cfg"
 token="/etc/signalfx/token"
-cmd="$dir/signalfx-l7-forwarder-9_3.py -c $config -t $(cat $token)"
+cmd="python $dir/signalfx-l7-forwarder.py -c $config -t $(cat $token)"
 user="signalfx-agent"
 group="signalfx-agent"
-rundir="/var/run/signalfx-l7-forwarder"
 
 name="signalfx-l7-forwarder"
 pidfile="/var/run/$name.pid"
-
+logfile="/var/log/$name.log"
 
 get_pid() {
     cat "$pidfile"
@@ -44,11 +43,10 @@ case "$1" in
     else
       echo "Starting $name"
 
-      mkdir -p "$rundir"
-      chown -R $user "$rundir"
-      chmod 0755 "$rundir"
+      touch $logfile
+      chown $user $logfile
 
-      nohup su -s -c python $cmd >> /dev/null 2>&1 &
+      nohup su -s /bin/sh -c 'exec "$0" "$@"' $user -- $cmd >> $logfile 2>&1 &
       pid=$!
 
       if [ $? -eq 0 ]; then
