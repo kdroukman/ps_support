@@ -112,7 +112,7 @@ _Disclaimer: While a metrics forwarder is provided for version 9.3, this is not 
 Download the forwarder script and configuration file to a specific directory on your host:
 ```
 $ sudo mkdir /etc/signalfx-l7-forwarder
-$ sudo wget https://raw.githubusercontent.com/kdroukman/ps_support/master/lenovo/layer7/signalfx-l7-forwarder-9_3.py -0 /etc/signalfx-l7-forwarder/signalfx-l7-forwarder-9_3.py
+$ sudo wget https://raw.githubusercontent.com/kdroukman/ps_support/master/lenovo/layer7/signalfx-l7-forwarder-9_3.py -O /etc/signalfx-l7-forwarder/signalfx-l7-forwarder-9_3.py
 $ sudo wget https://raw.githubusercontent.com/kdroukman/ps_support/master/lenovo/layer7/config.cfg -O /etc/signalfx-l7-forwarder/config.cfg
 ```
 
@@ -235,7 +235,7 @@ The script will write received output to a file called `layer7output_v3.txt` in 
 Download the forwarder script and configuration file to a specific directory on your host:
 ```
 $ sudo mkdir /etc/signalfx-l7-forwarder
-$ sudo wget https://raw.githubusercontent.com/kdroukman/ps_support/master/lenovo/layer7/signalfx-l7-forwarder.py -0 /etc/signalfx-l7-forwarder/signalfx-l7-forwarder.py
+$ sudo wget https://raw.githubusercontent.com/kdroukman/ps_support/master/lenovo/layer7/signalfx-l7-forwarder.py -O /etc/signalfx-l7-forwarder/signalfx-l7-forwarder.py
 $ sudo wget https://raw.githubusercontent.com/kdroukman/ps_support/master/lenovo/layer7/config.cfg -O /etc/signalfx-l7-forwarder/config.cfg
 ```
 
