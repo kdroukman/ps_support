@@ -215,7 +215,7 @@ In the Backing Policy you are creating, set the metrics to be Routed to the Appr
   1) If you are deploying the Forwarder to each of the nodes - it should be `http://<NODE IP>:9080` 
   2) If you are deploying the Forwarder to a central server - it should be `http://<CENTRAL SERVER IP OR DNS>:9080`
   
-  _Disclaimer: If port 9080 is in use by another application, you can change it to another suitable port number_
+  _Note: If port 9080 is in use by another application, you can change it to another suitable port number_
 
 **Test the JSON Output**
 If you need to test the output of your Backing Policy and ensure it adheres to the above, you can use the Simple Server created in POC: [server.py] (https://raw.githubusercontent.com/kdroukman/poc_support/master/server.py)
