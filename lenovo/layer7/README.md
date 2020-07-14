@@ -97,7 +97,7 @@ $ sudo chkconfig signalfx-agent on
 ## Setup APM Metrics Forwarder
 
 ### Pre-requsites
-You must have a SignalFx Smart Agent installed on your host. APM Metrics Forwarders provided here will be using `signalfx-agent` user and Access Token created as part of the SignalFx Smart Agent setup.
+You must have a SignalFx Smart Agent installed on your hosts. APM Metrics Forwarders provided here will be using `signalfx-agent` user and Access Token created as part of the SignalFx Smart Agent setup.
 
 ## Setting up the Metrics Forwarder on Layer 7 API Gateway version 9.3
 _Disclaimer: While a metrics forwarder is provided for version 9.3, this is not the recommended or supported method. It is assumed that Lenovo will make the necessary upgrades to utilize the recommended and supported method. In version 9.3 we incercept APM metrics published by the Layer 7 vendor APM solution provided alongside Layer 7 API Gateway._
