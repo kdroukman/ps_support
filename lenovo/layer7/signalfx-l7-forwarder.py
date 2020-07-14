@@ -85,7 +85,7 @@ class SFxHandler():
             logger.error("HTTP Error:" + str(rs.status_code) + " " + str(rs.reason) + "; Request:" + str(tags))
 
 
-# Convert Layer7 v 9.3 APM Metrics to SignalFx datapoints
+# Convert Layer7 v 9.4 APM Metrics to SignalFx datapoints
 def front_end_avg_response_time(host, service_uri, value):
     return {"gauge": [{
         "metric": "l7.avg_resp_time.ms",
