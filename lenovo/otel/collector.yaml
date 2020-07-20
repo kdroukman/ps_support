@@ -27,12 +27,16 @@ receivers:
   zipkin:
 processors:
   batch:
- # Remove the Query string with sensitive data from URL and create a new tag - http.url.truncated
+ # Remove the Query string with sensitive data from URL and create a new tag - http_url
   attributes/sanitize_url:
     actions:
     - key: "http.url"
       pattern: ^(?P<http_url>[^?]*)\??.*
       action: extract
+  attributes/delete_url:
+    actions:
+    - key: "http.url"
+      action: delete
   queued_retry:
   # Enabling the memory_limiter is strongly recommended for every pipeline.
   # Configuration is based on the amount of memory allocated to the collector.
@@ -57,13 +61,18 @@ exporters:
     endpoint: "https://ingest.us1.signalfx.com/v2/trace"
   # Metrics
   signalfx:
-    access_token: ""[!!!>>>CHANGE TO YOUR TOKEN]""
+    access_token: "[!!!>>>CHANGE TO YOUR TOKEN]""
     realm: "us1"
 service:
   pipelines:
+  # If you are using multiple tokens, add pipelines in the bellow format for each token:
+  #  traces/token1:
+  #    receivers: [sapm, zipkin]
+  #    processors: [attributes/sanitize_url, attributes/delete_url, memory_limiter, batch, queued_retry]
+  #    exporters: [sapm/token1]
     traces:
       receivers: [sapm, zipkin]
-      processors: [attributes/sanitize_url, memory_limiter, batch, queued_retry]
+      processors: [attributes/sanitize_url, attributes/delete_url, memory_limiter, batch, queued_retry]
       exporters: [sapm]
     metrics:
       receivers: [signalfx, prometheus]
