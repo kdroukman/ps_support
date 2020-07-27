@@ -1,0 +1,9 @@
+listenAddress: 127.0.0.1:9080
+signalFxAccessToken: CGFaFgwr8Qnms538Ovb64A
+signalFxRealm: us0
+appName: layer7
+appVersion: 9.3
+appEnvironment: kh-test-goclient
+intervalSeconds: 10s
+logging:
+  level: info
