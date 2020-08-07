@@ -20,7 +20,7 @@
 dir="/etc/signalfx-l7-forwarder"
 config="$dir/config.yaml"
 token="/etc/signalfx/token"
-cmd="$dir/signalfx-l7-forwarder-9_3 -c=$config"
+cmd="$dir/signalfx-l7-forwarder_9_3 -c=$config"
 user="signalfx-agent"
 group="signalfx-agent"
 
