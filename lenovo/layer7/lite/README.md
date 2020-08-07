@@ -36,6 +36,13 @@ $ sudo chmod 755 /etc/init.d/signalfx-l7-forwarder
 
 ### Step 1:
 
+Extract the forwarder to the `/etc/signalfx-l7-forwarder` directory:
+```
+sudo tar xzfv sfx-l7-fwd-linux.tar.gz -C /etc/signalfx-l7-forwarder
+```
+
+### Step 2:
+
 Edit the /etc/signalfx-l7-forwarder/config.yaml file to ensure the following values are set:
 
 ```
@@ -51,7 +58,7 @@ logging:
 ```
 
 
-### Step 2:
+### Step 3:
 
 Start the service with the following command:
 ```
@@ -63,7 +70,7 @@ Check the status of the service:
 $ sudo service signalfx-l7-forwarder status
 ```
 
-### Step 5
+### Step 4
 
 Enable the service to be automatically started on boot:
 ```
@@ -95,8 +102,9 @@ l7.request.count | counter | host, service_uri, environment
 
 **Pre-requisites**
 1) APM Metrics Forwarder for Layer 7 API Gateway version 9.4 or later can be deployed either on each of the nodes, or centrally on a separate server. 
-If you are preparing a new server to host the SignalFx Forwarder, **make sure you install SignalFx Smart Agent on it**, and Python with necessary modules such as `requests` and `argparse`.
+
 2) **Prepare the services for APM Metric collection by Configuring Layer 7 Gateway for External Metrics Collection** as documented in [Configure Gateway for External Metrics Collection](https://techdocs.broadcom.com/content/broadcom/techdocs/us/en/ca-enterprise-software/layer7-api-management/api-gateway/9-4/learning-center/overview-of-the-policy-manager/gateway-dashboard/configure-gateway-for-external-service-metrics.html)
+
 3) When creating Service Metrics Event Listener Backing Policy, make sure that the output format is in the exact JSON format as per bellow. This is the format that the SignalFx APM Metrics Forwarder expects as input:
 ```
 {"request":
@@ -118,7 +126,7 @@ If you are preparing a new server to host the SignalFx Forwarder, **make sure yo
 Do not deviate from the above format. Do not use an escape sequence when printing out quotes - eg. make sure the strings in the output look like this: `"request"`, not this: `\"request\"`.
 
 In the Backing Policy you are creating, set the metrics to be Routed to the Appropriate HTTP Server. 
-  1) If you are deploying the Forwarder to each of the nodes - it should be `http://<NODE IP>:9080` 
+  1) If you are deploying the Forwarder to each of the nodes - it should be `http://127.0.0.1:9080` or ``http://localhost:9080`
   2) If you are deploying the Forwarder to a central server - it should be `http://<CENTRAL SERVER IP OR DNS>:9080`
   
   _Note: If port 9080 is in use by another application, you can change it to another suitable port number_
@@ -136,45 +144,47 @@ $ sudo python server.py
 ```
 The script will write received output to a file called `layer7output_v3.txt` in you working directory. You can inspect the output format that is being received from Layer 7 API Gateway Backing Policy that you created, and make tweaks as necessary to ensure that it matches the required format. 
 
-### Step 1:
+### Downloads:
 
-Download the forwarder script and configuration file to a specific directory on your host:
+- Download the SignalFx L7 forwarder 9.4 .tar.gz bundle from here - [https://github.com/kdroukman/ps_support/releases/download/layer7-9.4/sfx-l7-fwd-linux_9_4.tar.gz](https://github.com/kdroukman/ps_support/releases/download/layer7-9.4/sfx-l7-fwd-linux_9_4.tar.gz)
+
+- Download the configuration file:
 ```
-$ sudo mkdir /etc/signalfx-l7-forwarder
-$ sudo wget https://raw.githubusercontent.com/kdroukman/ps_support/master/lenovo/layer7/signalfx-l7-forwarder.py -O /etc/signalfx-l7-forwarder/signalfx-l7-forwarder.py
-$ sudo wget https://raw.githubusercontent.com/kdroukman/ps_support/master/lenovo/layer7/config.cfg -O /etc/signalfx-l7-forwarder/config.cfg
-```
-
-### Step 2:
-Edit the /etc/signalfx-l7-forwarder/config.cfg file to ensure the following values are set:
-```
-[Server]
-port=<9080 or your required port number>
-
-[SignalFx]
-realm=us1
-dopost=1
-service=layer7
-version=9.4
-env=**<Enter relevant application here: liecomm-nonprod, eservice-nonprod, liecomm-prod, eservice-prod>**
-
-[Logging]
-file=stdout
-level=INFO
+$ sudo wget https://raw.githubusercontent.com/kdroukman/ps_support/master/lenovo/layer7/lite/config.yaml -O /etc/signalfx-l7-forwarder/config.yaml
 ```
 
-### Step 3:
-
-Download the APM Metrics Forwarder service to your RHEL or CentOS host: 
-
-Download the following file to your `init.d` directory and make it executable:
-
+- Stop current `signalfx-l7-forwarder` service from running and download the service script to your `init.d` directory:
 ```
-$ sudo wget https://raw.githubusercontent.com/kdroukman/ps_support/master/lenovo/layer7/signalfx-l7-forwarder.init -O /etc/init.d/signalfx-l7-forwarder
+$ sudo service signalfx-l7-forwarder stop
+$ sudo wget https://raw.githubusercontent.com/kdroukman/ps_support/master/lenovo/layer7/lite/signalfx-l7-forwarder.init -O /etc/init.d/signalfx-l7-forwarder
 $ sudo chmod 755 /etc/init.d/signalfx-l7-forwarder
 ```
 
-### Step 4:
+### Step 1:
+
+Extract the forwarder to the `/etc/signalfx-l7-forwarder` directory:
+```
+sudo tar xzfv sfx-l7-fwd-linux_9_4.tar.gz -C /etc/signalfx-l7-forwarder
+```
+
+### Step 2:
+
+Edit the /etc/signalfx-l7-forwarder/config.yaml file to ensure the following values are set:
+
+```
+listenAddress: 127.0.0.1:9080
+signalFxAccessToken: <Replace with your SFX token>
+signalFxRealm: us1
+appName: layer7
+appVersion: < specify version 9.3 or 9.4>
+appEnvironment: <Replace with eservice-prod, eservice-nonprod, liecomm-prod, liecomm-nonprod>
+intervalSeconds: 10s
+logging:
+  level: info
+```
+
+
+### Step 3:
 
 Start the service with the following command:
 ```
@@ -186,7 +196,7 @@ Check the status of the service:
 $ sudo service signalfx-l7-forwarder status
 ```
 
-### Step 5
+### Step 4
 
 Enable the service to be automatically started on boot:
 ```
@@ -196,10 +206,9 @@ $ sudo chkconfig signalfx-l7-forwarder on
 ### Troubleshooting:
 
 Should you have any issues with starting the service, execute the following steps to collect Debug logs - 
-1) Amend `/etc/signalfx-l7-forwarder/config.cfg` and set Logging level to `DEBUG`
+1) Amend `/etc/signalfx-l7-forwarder/config.yaml` and set Logging level to `debug`
 2) Restart the service. 
 3) Collect logs at `/var/log/signalfx-l7-forwarder.log` and send to our team for troubleshooting. 
-
 
 ### Metrics
 
