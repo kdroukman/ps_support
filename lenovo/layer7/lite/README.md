@@ -1,4 +1,4 @@
-## Setup APM Metrics Forwarder
+## Setup APM Metrics Forwarder (Lite Version)
 
 ### Pre-requsites
 You must have a SignalFx Smart Agent installed on your hosts. APM Metrics Forwarders provided here will be using `signalfx-agent` user.
