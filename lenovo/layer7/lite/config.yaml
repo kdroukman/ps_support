@@ -1,9 +1,9 @@
 listenAddress: 127.0.0.1:9080
-signalFxAccessToken: CGFaFgwr8Qnms538Ovb64A
-signalFxRealm: us0
+signalFxAccessToken: <Replace with your SFX token>
+signalFxRealm: us1
 appName: layer7
-appVersion: 9.3
-appEnvironment: kh-test-goclient
+appVersion: < specify version 9.3 or 9.4>
+appEnvironment: <Replace with eservice-prod, eservice-nonprod, liecomm-prod, liecomm-nonprod>
 intervalSeconds: 10s
 logging:
   level: info
