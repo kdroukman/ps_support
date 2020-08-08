@@ -1,1 +1,114 @@
 
+#!/bin/sh
+
+# chkconfig: 2345 20 80
+### BEGIN INIT INFO
+# Provides: signalfx-agent
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: SignalFx Layer 7 Forwarder
+# Description:
+#  The SignalFx Agent offers the ability to discover and collect metrics about
+#  the host and services running on the host.
+### END INIT INFO
+
+# This sysv init script only works on Debian systems due to the use of
+# start-stop-daemon.  We don't support any RHEL based systems that still use
+# sysv, as they all use either upstart (e.g. centos6/amazon) or systemd.
+
+dir="/etc/signalfx-l7-forwarder"
+config="$dir/config.yaml"
+token="/etc/signalfx/token"
+cmd="$dir/signalfx-l7-forwarder -c=$config"
+user="signalfx-agent"
+group="signalfx-agent"
+
+name="signalfx-l7-forwarder"
+pidfile="/var/run/$name.pid"
+logfile="/var/log/$name.log"
+
+get_pid() {
+    cat "$pidfile"
+}
+
+is_running() {
+    [ -f "$pidfile" ] && ps -p `get_pid` > /dev/null 2>&1
+}
+
+case "$1" in
+  start)
+    if is_running; then
+      echo "Already started"
+    else
+      echo "Starting $name"
+
+      touch $logfile
+      chown $user $logfile
+
+      nohup su -s /bin/sh -c 'exec "$0" "$@"' $user -- $cmd >> $logfile 2>&1 &
+      pid=$!
+
+      if [ $? -eq 0 ]; then
+        echo "Started.  Logs will go to $logfile"
+        echo -n $pid > $pidfile
+        exit 0
+      else
+        echo "Failed to start, see $logfile"
+        exit 1
+      fi
+    fi
+  ;;
+
+  stop)
+    if is_running; then
+      echo -n "Stopping $name.."
+
+      kill `get_pid`
+
+      for i in 0 1 2 3 4 5 6 7 8 9; do
+        if is_running; then
+          echo -n "."
+          sleep 1
+        fi
+      done
+
+      if is_running; then
+        echo "Failed to stop"
+        exit 1
+      else
+        echo "Stopped"
+      fi
+    else
+      echo "Not running"
+    fi
+
+    rm -f "$pidfile"
+  ;;
+
+  restart)
+    $0 stop
+    if is_running; then
+      echo "Unable to stop, will not attempt to start"
+      exit 1
+    fi
+    $0 start
+    ;;
+
+  status)
+    if is_running; then
+      echo "Running with pid `get_pid`"
+    else
+      echo "Not running"
+      exit 1
+    fi
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop|restart|status}"
+    exit 1
+    ;;
+esac
+
+exit 0
