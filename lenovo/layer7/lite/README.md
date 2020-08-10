@@ -170,7 +170,8 @@ sudo tar xzfv sfx-l7-fwd-linux_9_4.tar.gz -C /etc/signalfx-l7-forwarder
 ### Step 2:
 
 Edit the /etc/signalfx-l7-forwarder/config.yaml file to ensure the following values are set:
-_Note: If you are deploying to a central server, replace 127.0.0.1 with appropriate listner address_
+
+_Note: If you are deploying to a central server, replace 127.0.0.1 with the appropriate listener address_
 
 ```
 listenAddress: 127.0.0.1:9080
