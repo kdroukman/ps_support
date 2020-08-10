@@ -126,7 +126,7 @@ l7.request.count | counter | host, service_uri, environment
 Do not deviate from the above format. Do not use an escape sequence when printing out quotes - eg. make sure the strings in the output look like this: `"request"`, not this: `\"request\"`.
 
 In the Backing Policy you are creating, set the metrics to be Routed to the Appropriate HTTP Server. 
-  1) If you are deploying the Forwarder to each of the nodes - it should be `http://127.0.0.1:9080` or ``http://localhost:9080`
+  1) If you are deploying the Forwarder to each of the nodes - it should be `http://127.0.0.1:9080` (localhost)
   2) If you are deploying the Forwarder to a central server - it should be `http://<CENTRAL SERVER IP OR DNS>:9080`
   
   _Note: If port 9080 is in use by another application, you can change it to another suitable port number_
@@ -146,7 +146,7 @@ The script will write received output to a file called `layer7output_v3.txt` in 
 
 ### Downloads:
 
-- Download the SignalFx L7 forwarder 9.4 .tar.gz bundle from here - [https://github.com/kdroukman/ps_support/releases/download/layer7-9.4/sfx-l7-fwd-linux_9_4.tar.gz](https://github.com/kdroukman/ps_support/releases/download/layer7-9.4/sfx-l7-fwd-linux_9_4.tar.gz)
+- Download the SignalFx L7 forwarder 9.4 .tar.gz bundle from here - [https://github.com/kdroukman/ps_support/releases/download/layer7-9.4/sfx-l7-fwd-linux_9_4-v2.tar.gz](https://github.com/kdroukman/ps_support/releases/download/layer7-9.4/sfx-l7-fwd-linux_9_4-v2.tar.gz)
 
 - Download the configuration file:
 ```
@@ -170,6 +170,7 @@ sudo tar xzfv sfx-l7-fwd-linux_9_4.tar.gz -C /etc/signalfx-l7-forwarder
 ### Step 2:
 
 Edit the /etc/signalfx-l7-forwarder/config.yaml file to ensure the following values are set:
+_Note: If you are deploying to a central server, replace 127.0.0.1 with appropriate listner address_
 
 ```
 listenAddress: 127.0.0.1:9080
