@@ -26,13 +26,13 @@ You may also have situations where 80% CPU Utilization is normal for some hosts 
 ## Sudden Change Conditions
 -> Notice the number of alerts for three different Sudden Change optoins:
 
-Sudden Change using Mean + Standard Deviation - 4 alerts in 12 hours:
+Sudden Change using Mean plus Standard Deviation - 4 alerts in 12 hours:
 ![Mean+StdDev Sudden Change](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/img/HostCPUDetector%20-%20SuddenChange-MeanStdDev.png?raw=true)
 _You can read more about Standard Deviation [here](https://www.mathsisfun.com/data/standard-deviation.html)_
 
-Sudden Change using Percentile - 4 alerts in 12 hours. Notice when the alerts are cleared:
-![Percentile Sudden Change](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/img/HostCPUDetector-SuddenChange-MeanPerct.png?raw=true)
+Sudden Change using Percentile - 3 alerts in 12 hours:
+![Percentile Sudden Change](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/img/HostCPUDetector-SuddenChange-Percentile.png?raw=true)
 _Percentiles are less sensitive to extreme values than mean-based calculation._
 
-Sudden Change using Mean + Percentage - 4 alerts in 12 hours. Notice when the alerts are cleared:
+Sudden Change using Mean plus Percentage - 4 alerts in 12 hours. Notice when the alerts are cleared:
 ![Mean+Percent Sudden Change](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/img/HostCPUDetector-SuddenChange-MeanPerct.png?raw=true)
