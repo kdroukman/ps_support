@@ -1,5 +1,7 @@
 # cpu.usage.total & cpu.usage.system
 
+[<<BACK TO MAIN](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/README.md)
+
 `cpu.usage.total` and `cpu.usage.system` are collected by SignalFx Smart Agent monitor type `docker-container-stats`.
 
 Documentation: [Docker CPU Metrics](https://www.anshulpatel.in/post/linux_cpu_percentage/)
