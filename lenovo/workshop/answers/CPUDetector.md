@@ -21,9 +21,9 @@ With an immediate threshold we have 7 alerts in 12 hours.
 With adding duration, we check if the high CPU Utilization persists for 1 minute. This reduces our number of alerts to 4 in 12 hours.
 ![Duration Threshold](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/img/HostCPUDetector-Threshold-Duration2m.png?raw=true)
 
+## Sudden Change Conditions
 You may also have situations where 80% CPU Utilization is normal for some hosts and services. This where you can use Sudden Change to see if there is a spike in utilization compared to a previous period.
 
-## Sudden Change Conditions
 -> Notice the number of alerts for three different Sudden Change optoins:
 
 Sudden Change using Mean plus Standard Deviation - 4 alerts in 12 hours:
