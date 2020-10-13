@@ -15,7 +15,7 @@ Which condition do you think is best for detecting higher than normal CPU activi
 ## Memory Detectors
 
 1) Identify metrics to measure Memory Usage on the host. [View Answer](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/answers/MemCPUMetric.md)
-2) Identify metrics to measure Memory Usage of a Docker Container.
+2) Identify metrics to measure Memory Usage of a Docker Container. [View Answer](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/answers/DockerMemMetric.md)
 3) Identify metrics to measure Memory Usage of a container running in Kubernetes.
 4) Create custom charts displaying the Memory Usage of Host, Docker Container, and a container running in Kubernetes. 
 
