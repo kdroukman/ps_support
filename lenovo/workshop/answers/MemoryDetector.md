@@ -11,10 +11,10 @@ Bellow explore how different alert conditions affect the firing and clearing of 
 ## Threshold Condition
 
 When an alert is setup to fire immediately as soon as memory reaches 60% utilization we get 27 alerts in 12 hours:
-!(Memory Immediate Threshold Detector)[https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/img/HostMemDetector-Threshold-Immediate.png?raw=true]
+![Memory Immediate Threshold Detector](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/img/HostMemDetector-Threshold-Immediate.png?raw=true)
 
 When an alert is setup to fire when memory utilization is at or above 60% for 80% of the time in a 5 minute period, we get 1 alert in 12 hours. This removes occastional alert noise:
-![Memory Percentage Threshold Detector)[https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/img/HostMemDetector-Threshold-Percentage.png?raw=true]
+![Memory Percentage Threshold Detector](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/img/HostMemDetector-Threshold-Percentage.png?raw=true)
 
 ## Sudden Change Condition
 
