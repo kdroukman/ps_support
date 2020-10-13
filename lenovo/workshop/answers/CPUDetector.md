@@ -1,5 +1,7 @@
 # Host CPU Detector
 
+[<<BACK TO MAIN](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/README.md)
+
 Explore the example Host CPU Detector [HERE](https://app.us1.signalfx.com/#/detector/v2/EkM9g-bA4AA/edit).
 
 Explore Alert Signal. Notice that the Alert Signal uses the same `cpu.utilization` metric from the charts.
