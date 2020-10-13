@@ -2,10 +2,10 @@
 
 ## CPU Detectors
 
-1) Identify metrics to measure CPU utilization on the host.
-2) Identify metrics to measure CPU utilization of a Docker Container.
-3) Identify metrics to measure CPU utilization of a container running in Kubernetes.
-4) Create custom charts displaying the CPU utilisation of Host, Docker Container, and a container running in Kubernetes. 
+1) Identify metrics to measure CPU utilization on the host. [View Answer](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/answers/ContCPUMetric.md)
+2) Identify metrics to measure CPU utilization of a Docker Container. [View Answer](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/answers/DockerCPUMetric.md)
+3) Identify metrics to measure CPU utilization of a container running in Kubernetes. [View Answer](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/answers/k8sCPUMetric.md)
+4) Create custom charts displaying the CPU utilisation of Host, Docker Container, and a container running in Kubernetes. [Explore there Charts Here](https://app.us1.signalfx.com/#/dashboard/Ef5FEgsA0cw?groupId=Ef5FEgsA0cs&configId=Ef5FEgsA0c0)
 
 Review [Alert Conditions](https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#alert-condition) documentation.
 
