@@ -4,7 +4,7 @@
 
 `cpu.usage.total` and `cpu.usage.system` are collected by SignalFx Smart Agent monitor type `docker-container-stats`.
 
-Documentation: [Docker CPU Metrics](https://www.anshulpatel.in/post/linux_cpu_percentage/)
+Documentation: [Docker CPU Metrics](https://docs.signalfx.com/en/latest/integrations/integrations-reference/integrations.docker.html#cpu-usage-total)
 
 Further Reading: [What are CPU Jiffies?](https://www.anshulpatel.in/post/linux_cpu_percentage/)
 
