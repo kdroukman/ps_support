@@ -1,5 +1,7 @@
 # Host Memory Detector
 
+[<<BACK TO MAIN](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/README.md)
+
 Explore an example detector [HERE](https://app.us1.signalfx.com/#/detector/v2/EkNAeJaA0AA/edit)
 
 `memory.utilization` metric has been provided to the detector. The detector uses 5 Metric Time Series corresponding to 5 hosts with SignalFx Smart Agent installed to check if any of the hosts meet the Alert Conditions.
