@@ -9,7 +9,7 @@
 
 Review [Alert Conditions](https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#alert-condition) documentation.
 
-Which condition do you think is best for detecting higher than normal CPU activity?
+Which condition do you think is best for detecting higher than normal CPU activity? [View Answer and Discussion](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/answers/CPUDetector.md)
 
 
 ## Memory Detectors
