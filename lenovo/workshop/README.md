@@ -48,7 +48,7 @@ ssh into your dedicated EC2 host:
 |waijunwo | 3.25.229.14 | ssh ubuntu@3.25.229.14 | Observability2020! |
 |thongsim | 3.106.125.182 | ssh ubuntu@3.106.125.182 | Observability2020! |
 |kcheng6 | 3.26.40.8 | ssh ubuntu@3.26.40.8 | Observability2020! |
-|soomkc | soomkc | ssh ubuntu@soomkc | Observability2020! |
+|soomkc | 3.26.30.13 | ssh ubuntu@3.26.30.13 | Observability2020! |
 
 1) Navigate to signalfx-jumpstart directory. 
 2) Open main.tf and inspect its contents.
