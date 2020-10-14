@@ -63,11 +63,11 @@ Generally, Signal details lists all the dimension values. To preview which dimen
 ### What are Alert Rules?
 
 Alert Rules allow you to create several versions of an alert on the **same metric signal definition**. Eg: Alert condition, Alert message, Alert notification. 
-All allert rules will use the same reporting metric, if you try to modify metric per alert rule - you will see unexpected behaviour. 
+All alert rules will use the same reporting metric, if you try to modify metric per alert rule - you will see unexpected behaviour. 
 
 ### My alert doesn't fire as expected.
 
-Refer to the follow [Troubleshooting documentation](https://docs.signalfx.com/en/latest/detect-alert/when-detector-not-triggering.html) to look into possible causes of detector not firing as expected. Usually it's due to sensitivity settings on the alert detector not accomodating for data behaviour (sparse data, jittery data, etc).
+Refer to the following [Troubleshooting documentation](https://docs.signalfx.com/en/latest/detect-alert/when-detector-not-triggering.html) to look into possible causes of detector not firing as expected. Usually it's due to sensitivity settings on the alert detector not accomodating for data behaviour (sparse data, jittery data, etc).
 
 ### What should I detect on for Black Friday?
 
