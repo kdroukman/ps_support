@@ -20,4 +20,4 @@ You can find these metrics in your Org if you search on any of:
 When charting the APM Metrics, you can split and filter by any of the above dimensions. 
 
 `sf_error` dimension has values `true` and `false`, therefore we need to obtain any of `service.request.count`, `traces.count`, or `spans.count`, and Filter on `sf_error:true` to get the error count.
-We can divide that number of the unfiltered count to obtain Error % Rate.
+We can divide that number by the unfiltered count to obtain Error % Rate.
