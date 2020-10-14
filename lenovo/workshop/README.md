@@ -82,7 +82,7 @@ The following are recommended detectors to setup prior to black friday. These wi
 7) HAProxy spikes in Backend failures, latency and Front end connection rate for all proxy names (services)
 8) Layer 7 spikes in unsuccessful requests and latency for all services.
 
-If you have identified service in a critical path, you may add Critical level detectors for 
+If you have identified services in a critical path, you may add Critical level detectors for 
 1) Sudden Spike in load for APM services in the critical path.
 2) Sudden Spike in Error Rate for APM services in the critical path.
 3) Increase in Latency (Service Performance) for APM services in the critical path.
