@@ -1,5 +1,7 @@
 # APM Error Detector
 
+[<<BACK TO MAIN](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/README.md)
+
 View example APM Error Rate detector [HERE](https://app.us1.signalfx.com/#/detector/v2/EkNH-eOA4AA/edit).
 
 Note that while you can use the available APM Metrics to create Infrastructure or Customer Metrics Alert type, there is a simplified APM Detector type available that automatically selects the right metrics for you.
