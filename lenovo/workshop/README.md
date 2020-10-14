@@ -5,7 +5,7 @@
 1) Identify metrics to measure CPU utilization on the host. [View Answer](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/answers/ContCPUMetric.md)
 2) Identify metrics to measure CPU utilization of a Docker Container. [View Answer](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/answers/DockerCPUMetric.md)
 3) Identify metrics to measure CPU utilization of a container running in Kubernetes. [View Answer](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/answers/k8sCPUMetric.md)
-4) Create custom charts displaying the CPU utilisation of Host, Docker Container, and a container running in Kubernetes. [Explore there Charts Here](https://app.us1.signalfx.com/#/dashboard/Ef5FEgsA0cw?groupId=Ef5FEgsA0cs&configId=Ef5FEgsA0c0)
+4) Create custom charts displaying the CPU utilisation of Host, Docker Container, and a container running in Kubernetes. [Explore the Charts Here](https://app.us1.signalfx.com/#/dashboard/Ef5FEgsA0cw?groupId=Ef5FEgsA0cs&configId=Ef5FEgsA0c0)
 
 Review [Alert Conditions](https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#alert-condition) documentation.
 
@@ -16,8 +16,8 @@ Which condition do you think is best for detecting higher than normal CPU activi
 
 1) Identify metrics to measure Memory Usage on the host. [View Answer](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/answers/MemCPUMetric.md)
 2) Identify metrics to measure Memory Usage of a Docker Container. [View Answer](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/answers/DockerMemMetric.md)
-3) Identify metrics to measure Memory Usage of a container running in Kubernetes.
-4) Create custom charts displaying the Memory Usage of Host, Docker Container, and a container running in Kubernetes. 
+3) Identify metrics to measure Memory Usage of a container running in Kubernetes. [View Answer](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/answers/K8sMemMetric.md)
+4) Create custom charts displaying the Memory Usage of Host, Docker Container, and a container running in Kubernetes. [Explore the Charts Here](https://app.us1.signalfx.com/#/dashboard/Ef5FEgsA0cw?groupId=Ef5FEgsA0cs&configId=Ef5FEgsA0c0)
 
 Review [Alert Conditions](https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#alert-condition) documentation.
 
@@ -25,14 +25,15 @@ Which condition do you think is best for detecting higher than normal Memory Uti
 
 When would you want to activate an alert?
 When would you clear an alert?
-
+[View Answer and Discussion](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/answers/MemoryDetector.md)
 
 ## Error Rate Detectors
 
-1) Identify metrics that measure Errors on for a service.
-2) Create a custom chart to display the number of errors for all services.
+1) Identify metrics that measure Errors on for a service. [View Answer](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/answers/APMMetrics.md)
+2) Create a custom chart to display the number of errors for all services.[View Answer](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/answers/APMDashboard.md)
 
 Which alert condition would you use to alert on an increase in errors?
+[View Answer and Discussion](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/answers/APMDetector.md)
 
 ## Metrics
 1) Click on the **Metrics** menu in the top navigation bar and inspect the metrics. Search for a metric. Inspect returned results.
