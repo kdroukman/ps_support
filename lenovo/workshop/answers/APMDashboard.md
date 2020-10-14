@@ -1,5 +1,7 @@
 # APM Metrics Dashboard
 
+[<<BACK TO MAIN](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/README.md)
+
 Here we use `service.request.count` metric to calculate and view error rate for All Services:
 ![Service Error Rate](https://github.com/kdroukman/ps_support/blob/master/lenovo/workshop/img/APMErrMetric.png?raw=true)
 
